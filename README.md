@@ -77,4 +77,4 @@ Các tên tiếng Anh còn giữ lại là thuật ngữ của khung bài học 
 - [x] Loop có metric hypothesis trỏ về metric ở Phase 3.
 - [x] Bảng tracking: mọi event map về một metric; ≥2 acceptance criteria viết rõ như ví dụ mẫu.
 - [x] Phần revision (nếu có) ghi lý do thay đổi.
-- [ ] AI Support Log là của chính người nộp.
+- [x] AI Support Log là của chính người nộp.
