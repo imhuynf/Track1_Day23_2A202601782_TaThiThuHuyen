@@ -70,15 +70,11 @@ Các tên tiếng Anh còn giữ lại là thuật ngữ của khung bài học 
 
 ## Kiểm tra trước khi nộp
 
-- [x] Kho mã nguồn có đúng tên `Track1_Day23_2A202601782_TaThiThuHuyen`.
-- [x] Đã bổ sung đường dẫn công khai của Bộ chỉ số sản phẩm; GitHub Pages không yêu cầu quyền đăng nhập để xem.
-- [x] Thẻ Core Action có kết quả tự kiểm 5 tiêu chí.
-- [x] Cadence xuất phát từ bản chất của hành vi.
-- [x] Retention đủ 6 thành phần và khớp cadence.
-- [x] North Star Metric gồm đơn vị giá trị, ngưỡng chất lượng và tần suất.
-- [x] Có ít nhất một counter-metric.
-- [x] Product Loop có ít nhất 2 chu kỳ và giả thuyết chỉ số.
-- [x] Mỗi event trong bảng đo lường được dùng để tính ít nhất một chỉ số.
-- [x] Có ít nhất 2 tiêu chí nghiệm thu cho hệ thống đo lường.
-- [ ] Người nộp đã đọc, xác nhận và hoàn thiện `ai-support-log.md` bằng trải nghiệm thực tế của mình.
-- [ ] Người nộp đã tự viết phần “Điều tôi mang về áp dụng cho dự án thật”.
+- [x] Repo đúng tên `Track1_Day23_2A202601782_TaThiThuHuyen`; README có link tệp Metrics Pack đã cấp quyền xem.
+- [x] Tệp đủ 7 mục (00–06), thêm mục 07 — Revision nếu có thay đổi lớn; mục nào cũng dùng lại kết quả mục trước (core action → cadence → metric → loop → event).
+- [x] Core Action Card có kết quả tự kiểm 5 tiêu chí.
+- [x] Retention đủ 6 thành phần và khớp kết luận cadence.
+- [x] Loop có metric hypothesis trỏ về metric ở Phase 3.
+- [x] Bảng tracking: mọi event map về một metric; ≥2 acceptance criteria viết rõ như ví dụ mẫu.
+- [x] Phần revision (nếu có) ghi lý do thay đổi.
+- [ ] AI Support Log là của chính người nộp.
