@@ -33,6 +33,12 @@
 
     a { color: inherit; }
 
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.88em;
+      word-break: break-all;
+      overflow-wrap: break-word;
+    }
     .document {
       width: min(1180px, calc(100% - 32px));
       margin: 32px auto 80px;
@@ -94,7 +100,7 @@
 
     .identity-grid { grid-template-columns: repeat(3, 1fr); }
     .card-grid.two { grid-template-columns: repeat(2, 1fr); }
-    .card-grid.three { grid-template-columns: repeat(3, 1fr); }
+    .card-grid.three { grid-template-columns: repeat(3, 1fr); align-items: start; }
     .gate-grid { grid-template-columns: repeat(5, 1fr); }
 
     .identity,
@@ -255,6 +261,8 @@
       color: #87929e;
       background: #fbfcfd;
       font-style: italic;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
 
     .formula {
@@ -371,6 +379,12 @@
           <span class="label">Dự án</span>
           <div class="value">Intelligent Resume Screening Automation (iRSA)</div>
         </div>
+      </div>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:18px;">
+        <a href="https://imhuynf.github.io/Track1_Day23_2A202601782_TaThiThuHuyen/" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border:1px solid var(--line); border-radius:999px; color:var(--accent); font-size:13px; font-weight:750; text-decoration:none; background:var(--blue-soft);">🌐 Trang đã deploy (GitHub Pages)</a>
+        <a href="https://imhuynf.github.io/Track1_Day23_2A202601782_TaThiThuHuyen/metrics-pack.html" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border:1px solid var(--line); border-radius:999px; color:var(--navy); font-size:13px; font-weight:750; text-decoration:none; background:var(--soft);">📄 metrics-pack.html</a>
+        <a href="https://github.com/imhuynf/Track1_Day23_2A202601782_TaThiThuHuyen" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border:1px solid var(--line); border-radius:999px; color:var(--navy); font-size:13px; font-weight:750; text-decoration:none; background:var(--soft);">⬛ GitHub Repo</a>
       </div>
 
       <div class="flow">Hành động cốt lõi (Core Action) → Nhịp tự nhiên (cadence) → Hệ thống chỉ số + retention<br>→ Vòng lặp sản phẩm (giả thuyết) → Sự kiện đo lường (phép thử)</div>
@@ -835,7 +849,13 @@
       <p class="note"><strong>Nhật ký hỗ trợ của AI:</strong> người nộp tự xác nhận AI đã hỗ trợ ở đâu, đề xuất nào chưa phù hợp và mình đã tự sửa hoặc quyết định lại điều gì.</p>
     </section>
 
-    <footer class="footer">Bộ chỉ số sản phẩm · Track 1 Ngày 23 · Tạ Thị Thu Huyền · 2A202601782</footer>
+    <footer class="footer">
+      Bộ chỉ số sản phẩm · Track 1 Ngày 23 · Tạ Thị Thu Huyền · 2A202601782
+      <br style="margin-bottom:8px;">
+      <a href="https://imhuynf.github.io/Track1_Day23_2A202601782_TaThiThuHuyen/" target="_blank" rel="noopener" style="color:var(--accent); text-decoration:none; font-weight:700;">🌐 GitHub Pages</a>
+      &nbsp;·&nbsp;
+      <a href="https://github.com/imhuynf/Track1_Day23_2A202601782_TaThiThuHuyen" target="_blank" rel="noopener" style="color:var(--muted); text-decoration:none;">GitHub Repo</a>
+    </footer>
   </main>
 </body>
 </html>
