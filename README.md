@@ -47,6 +47,7 @@
 ## Tệp bài làm
 
 - **Đường dẫn công khai để nộp:** [Mở Bộ chỉ số sản phẩm trên GitHub Pages](https://imhuynf.github.io/Track1_Day23_2A202601782_TaThiThuHuyen/)
+- **Đường dẫn trực tiếp đến tệp HTML:** [metrics-pack.html](https://imhuynf.github.io/Track1_Day23_2A202601782_TaThiThuHuyen/metrics-pack.html)
 - **Kho mã nguồn GitHub:** [Track1_Day23_2A202601782_TaThiThuHuyen](https://github.com/imhuynf/Track1_Day23_2A202601782_TaThiThuHuyen)
 
 Tệp Bộ chỉ số sản phẩm gồm:
