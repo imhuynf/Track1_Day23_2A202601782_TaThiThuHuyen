@@ -66,7 +66,9 @@ Các tên tiếng Anh còn giữ lại là thuật ngữ của khung bài học 
 
 ## Điều tôi mang về áp dụng cho dự án thật
 
-> Phần này phải do người nộp tự viết: nêu một bài học quan trọng từ bài thực hành và cách áp dụng cụ thể vào iRSA.
+Điều quan trọng nhất tôi rút ra là không nên chọn chỉ số vì dữ liệu đó dễ đếm, mà phải bắt đầu từ hành vi tạo ra giá trị và nhịp nhu cầu thực tế của người dùng. Với iRSA, số CV được AI phân tích, số lần mở hồ sơ hay tổng số quyết định đều có thể tăng mà chưa chứng minh chuyên viên tuyển dụng đang sàng lọc tốt hơn. Vì vậy, tôi sẽ dùng tỷ lệ hồ sơ đủ điều kiện nhận được quyết định sàng lọc đạt chuẩn và đúng hạn làm tín hiệu chính; retention chỉ được tính khi có một cơ hội sàng lọc mới, thay vì khi người dùng tiếp tục xử lý các hồ sơ đã có sẵn trong cùng hàng đợi.
+
+Để áp dụng, tôi sẽ ưu tiên bổ sung tracking ở phía máy chủ cho thời điểm hồ sơ đủ điều kiện xem xét, phiên bản tiêu chí của vị trí, quyết định do chuyên viên có thẩm quyền lưu, thời hạn xử lý và kết quả kiểm toán chất lượng. Giai đoạn đầu dùng dữ liệu này để tạo baseline và kiểm tra độ tin cậy của event; sau đó mới đặt ngưỡng activation, SLA và mục tiêu cải thiện. Tôi cũng sẽ duy trì rào chắn số quyết định không qua người có thẩm quyền xem xét bằng `0`, để việc tối ưu chỉ số không biến iRSA từ công cụ hỗ trợ thành hệ thống tự động quyết định thay con người.
 
 ## Kiểm tra trước khi nộp
 
