@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bộ chỉ số sản phẩm — Tạ Thị Thu Huyền</title>
+  <style>
+    :root {
+      --navy: #20344d;
+      --ink: #3f4650;
+      --muted: #66717e;
+      --line: #dbe5ed;
+      --soft: #f4f7f9;
+      --blue-soft: #eef5fa;
+      --accent: #3276a8;
+      --success: #2f745f;
+      --warning: #a46125;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #eef2f5;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .document {
+      width: min(1180px, calc(100% - 32px));
+      margin: 32px auto 80px;
+      background: var(--white);
+      box-shadow: 0 18px 55px rgba(32, 52, 77, 0.10);
+    }
+
+    .hero {
+      padding: 64px 64px 52px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      margin-bottom: 18px;
+      color: var(--navy);
+      font-size: clamp(42px, 6vw, 76px);
+      line-height: 1.04;
+      letter-spacing: -.045em;
+    }
+
+    h2 {
+      margin-bottom: 24px;
+      color: var(--navy);
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.12;
+      letter-spacing: -.025em;
+    }
+
+    h3 {
+      margin-bottom: 12px;
+      color: var(--navy);
+      font-size: 20px;
+    }
+
+    .lead {
+      max-width: 820px;
+      margin-bottom: 28px;
+      color: var(--muted);
+      font-size: 21px;
+    }
+
+    .identity-grid,
+    .card-grid,
+    .gate-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .identity-grid { grid-template-columns: repeat(3, 1fr); }
+    .card-grid.two { grid-template-columns: repeat(2, 1fr); }
+    .card-grid.three { grid-template-columns: repeat(3, 1fr); }
+    .gate-grid { grid-template-columns: repeat(5, 1fr); }
+
+    .identity,
+    .card,
+    .gate {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--white);
+    }
+
+    .identity { padding: 18px 20px; }
+    .card { padding: 22px; }
+    .gate { padding: 18px; }
+
+    .label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .value {
+      min-height: 28px;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .placeholder {
+      color: #87929e;
+      font-weight: 500;
+      font-style: italic;
+    }
+
+    .flow {
+      margin-top: 26px;
+      padding: 22px 26px;
+      border: 1px solid #cfdee9;
+      border-radius: 18px;
+      color: var(--navy);
+      background: var(--soft);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .phase-nav {
+      display: flex;
+      gap: 10px;
+      padding: 18px 64px;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, .96);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .phase-nav a {
+      flex: 0 0 auto;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--navy);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .phase-nav a:hover { background: var(--blue-soft); }
+
+    .section {
+      padding: 64px;
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 84px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .phase-number {
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .time-pill {
+      flex: 0 0 auto;
+      padding: 8px 13px;
+      border-radius: 999px;
+      color: var(--navy);
+      background: var(--blue-soft);
+      font-weight: 750;
+      font-size: 14px;
+    }
+
+    .prompt {
+      margin: 0 0 26px;
+      padding: 18px 22px;
+      border-left: 4px solid var(--accent);
+      border-radius: 0 14px 14px 0;
+      background: var(--blue-soft);
+      color: var(--navy);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .note {
+      margin: 20px 0;
+      padding: 17px 20px;
+      border-radius: 14px;
+      background: #fff7ee;
+      color: #75471d;
+    }
+
+    .table-wrap {
+      margin: 18px 0 28px;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+    }
+
+    th, td {
+      padding: 17px 20px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--navy);
+      background: var(--soft);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    td:first-child {
+      width: 25%;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .fill {
+      min-height: 44px;
+      padding: 10px 12px;
+      border: 1px dashed #b9c8d3;
+      border-radius: 10px;
+      color: #87929e;
+      background: #fbfcfd;
+      font-style: italic;
+    }
+
+    .formula {
+      padding: 24px;
+      border: 1px solid #cfe0eb;
+      border-radius: 18px;
+      color: var(--navy);
+      background: var(--blue-soft);
+      text-align: center;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .loop {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      align-items: stretch;
+      margin: 22px 0;
+    }
+
+    .loop-step {
+      position: relative;
+      min-height: 120px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      color: var(--navy);
+      background: var(--white);
+    }
+
+    .loop-step:not(:last-child)::after {
+      content: "→";
+      position: absolute;
+      top: 42%;
+      right: -12px;
+      z-index: 2;
+      color: var(--accent);
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .loop-step strong { display: block; margin-bottom: 8px; }
+
+    .checklist {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li {
+      display: flex;
+      gap: 11px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .checklist li:last-child { border-bottom: 0; }
+    .checklist li::before { content: "□"; color: var(--accent); font-size: 20px; line-height: 1.15; }
+
+    .gate strong {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--success);
+    }
+
+    .gate p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .footer {
+      padding: 36px 64px;
+      color: var(--muted);
+      background: var(--soft);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 850px) {
+      .document { width: 100%; margin: 0; }
+      .hero, .section { padding: 40px 24px; }
+      .phase-nav { padding: 14px 24px; }
+      .identity-grid, .card-grid.two, .card-grid.three, .gate-grid { grid-template-columns: 1fr; }
+      .loop { grid-template-columns: 1fr; }
+      .loop-step:not(:last-child)::after { content: "↓"; top: auto; bottom: -20px; right: 50%; }
+      .section-head { display: block; }
+      .time-pill { display: inline-block; margin-bottom: 18px; }
+    }
+
+    @media print {
+      body { background: white; }
+      .document { width: 100%; margin: 0; box-shadow: none; }
+      .phase-nav { display: none; }
+      .section { break-before: page; }
+      .hero { min-height: 90vh; }
+    }
+  </style>
+</head>
+<body>
+  <main class="document">
+    <header class="hero">
+      <p class="eyebrow">Track 1 · Ngày 23 · Chỉ số sản phẩm</p>
+      <h1>Bộ chỉ số sản phẩm</h1>
+      <p class="lead">Bộ chỉ số này nối hành vi tạo giá trị của chuyên viên tuyển dụng với nhịp sử dụng tự nhiên, hệ thống đo lường, retention, vòng lặp sản phẩm và các sự kiện cần ghi nhận trong iRSA.</p>
+
+      <div class="identity-grid">
+        <div class="identity">
+          <span class="label">Học viên</span>
+          <div class="value">Tạ Thị Thu Huyền</div>
+        </div>
+        <div class="identity">
+          <span class="label">Mã học viên</span>
+          <div class="value">2A202601782</div>
+        </div>
+        <div class="identity">
+          <span class="label">Dự án</span>
+          <div class="value">Intelligent Resume Screening Automation (iRSA)</div>
+        </div>
+      </div>
+
+      <div class="flow">Hành động cốt lõi (Core Action) → Nhịp tự nhiên (cadence) → Hệ thống chỉ số + retention<br>→ Vòng lặp sản phẩm (giả thuyết) → Sự kiện đo lường (phép thử)</div>
+    </header>
+
+    <nav class="phase-nav" aria-label="Điều hướng Bộ chỉ số sản phẩm">
+      <a href="#scope">00 Phạm vi</a>
+      <a href="#core-action">01 Core Action</a>
+      <a href="#nature">02 Bản chất &amp; cadence</a>
+      <a href="#metrics">03 Hệ thống chỉ số</a>
+      <a href="#retention">04 Retention</a>
+      <a href="#loop">05 Vòng lặp</a>
+      <a href="#tracking">06 Đo lường</a>
+      <a href="#revision">07 Rà soát</a>
+    </nav>
+
+    <section class="section" id="scope">
+      <div class="section-head">
+        <div>
+          <div class="phase-number">Giai đoạn 00</div>
+          <h2>Chốt phạm vi</h2>
+        </div>
+        <span class="time-pill">10 phút</span>
+      </div>
+      <p class="prompt">Dự án nào, một người dùng chính nào và công việc cốt lõi nào sẽ được phân tích?</p>
+      <div class="card-grid two">
+        <article class="card">
+          <span class="label">Dự án</span>
+          <div class="fill">Intelligent Resume Screening Automation (iRSA) là hệ thống hỗ trợ quyết định trong sàng lọc hồ sơ. Hệ thống chuẩn hóa thông tin từ CV, đối chiếu với tiêu chí tuyển dụng và cung cấp khuyến nghị kèm căn cứ cho lượt đánh giá ban đầu. Quyết định chuyển tiếp hoặc loại hồ sơ thuộc về người có thẩm quyền.</div>
+        </article>
+        <article class="card">
+          <span class="label">Giai đoạn hiện tại</span>
+          <div class="fill"><strong>Đã xác nhận:</strong> sản phẩm đã được triển khai. <strong>Khoảng trống dữ liệu:</strong> chưa xác định phạm vi triển khai, nhóm người dùng thực tế và việc sử dụng CV thật.</div>
+        </article>
+        <article class="card">
+          <span class="label">Người dùng chính (persona)</span>
+          <div class="fill">Chuyên viên tuyển dụng chịu trách nhiệm sàng lọc ban đầu cho các vị trí có số lượng hồ sơ lớn.</div>
+        </article>
+        <article class="card">
+          <span class="label">Công việc cốt lõi (core job)</span>
+          <div class="fill">“Khi một vị trí tuyển dụng liên tục tiếp nhận nhiều hồ sơ, tôi cần đánh giá từng hồ sơ ứng tuyển theo bộ tiêu chí của vị trí và quyết định hồ sơ đó có nên được đưa vào danh sách ngắn hay không, với căn cứ nhất quán, đủ rõ để giải trình và trong thời hạn sàng lọc.”</div>
+        </article>
+      </div>
+
+      <h3 style="margin-top: 28px;">Phạm vi quy trình đã chọn</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Thành phần</th><th>Phạm vi Giai đoạn 00</th></tr></thead>
+          <tbody>
+            <tr><td>Tình huống sử dụng</td><td>Chuyên viên tuyển dụng xem xét từng hồ sơ ứng tuyển trong bối cảnh của vị trí tương ứng và đưa ra quyết định sàng lọc ban đầu.</td></tr>
+            <tr><td>Bối cảnh nghiệp vụ</td><td>Một vị trí tuyển dụng (`Job Opening`) có bộ tiêu chí và trọng số riêng.</td></tr>
+            <tr><td>Đơn vị công việc nhỏ nhất</td><td>Một hồ sơ ứng tuyển (`Candidate Application`) gắn với một vị trí cụ thể.</td></tr>
+            <tr><td>Điều kiện tiên quyết</td><td>Vị trí có bộ tiêu chí hợp lệ; hồ sơ đã được tiếp nhận; kết quả sàng lọc của hệ thống đã sẵn sàng để chuyên viên xem xét.</td></tr>
+            <tr><td>Bắt đầu quy trình</td><td>Chuyên viên bắt đầu xem hồ sơ, kết quả sàng lọc và căn cứ do hệ thống cung cấp.</td></tr>
+            <tr><td>Kết thúc quy trình</td><td>Chuyên viên ghi nhận hồ sơ có được đưa vào danh sách ngắn hay không.</td></tr>
+            <tr><td>Cách vận hành</td><td>Hồ sơ đi vào hàng đợi khi phát sinh, không cần chờ đủ một lô. Chưa đủ dữ liệu để kết luận quy trình sàng lọc bằng AI tự chạy khi hồ sơ được tạo hay cần chuyên viên chủ động kích hoạt.</td></tr>
+            <tr><td>Trách nhiệm của hệ thống</td><td>iRSA trích xuất và chia nhỏ nội dung CV, đối chiếu tiêu chí rồi tạo khuyến nghị kèm căn cứ. Cách kích hoạt quy trình xử lý tự động không thuộc phạm vi hành động cốt lõi và cần được kiểm chứng riêng.</td></tr>
+            <tr><td>Trách nhiệm của con người</td><td>Chuyên viên xem kết quả sàng lọc, kiểm tra căn cứ và chịu trách nhiệm cho quyết định.</td></tr>
+            <tr><td>Ngoài phạm vi</td><td>Tiếp nhận hồ sơ, vận hành quy trình AI, phỏng vấn, liên lạc với ứng viên, quyết định tuyển dụng cuối cùng và các bước sau danh sách ngắn.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Chất lượng lập luận</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Loại thông tin</th><th>Nội dung</th></tr></thead>
+          <tbody>
+            <tr><td>Thông tin đã xác nhận</td><td>Mỗi vị trí có bộ tiêu chí và trọng số riêng; hồ sơ phát sinh theo từng lượt ứng tuyển; chuyên viên có quyền đưa ra quyết định sàng lọc; iRSA không tự quyết định tuyển hoặc loại ứng viên.</td></tr>
+            <tr><td>Suy luận</td><td>Vị trí tuyển dụng là bối cảnh nghiệp vụ vì mức độ phù hợp chỉ có nghĩa khi so với tiêu chí của vị trí. Hồ sơ ứng tuyển là đơn vị công việc nhỏ nhất vì chuyên viên xem xét và ra quyết định trên từng hồ sơ.</td></tr>
+            <tr><td>Quyết định</td><td>Giai đoạn 00 phân tích quyết định sàng lọc trên từng hồ sơ; vị trí tuyển dụng là bối cảnh, còn hồ sơ ứng tuyển là đối tượng của quy trình.</td></tr>
+            <tr><td>Giả thuyết cần kiểm chứng</td><td>Quyết định sàng lọc trên từng hồ sơ đủ gần giá trị cốt lõi để trở thành ứng viên cho Core Action. Giả thuyết này được đưa sang Giai đoạn 01 để phản biện trước khi chốt.</td></tr>
+            <tr><td>Khuyến nghị</td><td>So sánh hành vi ghi nhận quyết định với các hành vi gần kề như xem CV, xem điểm AI và nhận kết quả do AI tạo trước khi chọn Core Action.</td></tr>
+            <tr><td>Chưa đủ dữ liệu để kết luận</td><td>Ngưỡng xác định “nhiều hồ sơ”; phạm vi triển khai thực tế; chuyên viên có xem toàn bộ hồ sơ hay chỉ một phần; ý nghĩa nghiệp vụ của từng trạng thái; khả năng đảo quyết định; cơ chế kích hoạt AI; cách xử lý khi tiêu chí thay đổi.</td></tr>
+            <tr><td>Lập luận cá nhân</td><td>Tôi chọn phạm vi theo từng hồ sơ ứng tuyển vì đây là đơn vị nhỏ nhất mà chuyên viên trực tiếp xem xét, đưa ra quyết định và làm thay đổi trạng thái trong quy trình; vị trí tuyển dụng cung cấp bối cảnh và tiêu chí đánh giá. Lựa chọn này giúp xác định rõ người thực hiện, đối tượng và điểm kết thúc của một lượt sàng lọc. Đổi lại, bài chưa phản ánh đầy đủ hiệu quả ở cấp toàn vị trí hoặc toàn nhóm, chẳng hạn tốc độ xử lý cả quy trình và chất lượng tuyển dụng cuối cùng.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note"><strong>Trạng thái Giai đoạn 00:</strong> đủ điều kiện chuyển sang Giai đoạn 01; các dữ liệu còn thiếu đã được ghi rõ. Kết quả chốt phạm vi mới chỉ tạo ra một ứng viên cho Core Action, chưa tự động trở thành Core Action.</p>
+    </section>
+
+    <section class="section" id="core-action">
+      <div class="section-head">
+        <div>
+          <div class="phase-number">Giai đoạn 01</div>
+          <h2>Hành động cốt lõi (Core Action)</h2>
+        </div>
+        <span class="time-pill">15 phút</span>
+      </div>
+      <p class="prompt">Hành vi nào gần giá trị cốt lõi nhất và chứng minh người dùng đã tiến rõ rệt tới giá trị?</p>
+
+      <h3>Phân biệt bốn khái niệm</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Khái niệm</th><th>Câu trả lời của bạn</th></tr></thead>
+          <tbody>
+            <tr><td>Công việc cốt lõi (core job)</td><td><div class="fill">Khi một vị trí liên tục tiếp nhận nhiều hồ sơ, chuyên viên cần đánh giá từng hồ sơ theo tiêu chí của vị trí và quyết định hồ sơ đó có nên được đưa vào danh sách ngắn hay không, với căn cứ nhất quán, đủ rõ để giải trình và trong thời hạn sàng lọc.</div></td></tr>
+            <tr><td>Hành động cốt lõi (Core Action)</td><td><div class="fill">Chuyên viên hoàn tất việc xem xét và ghi nhận quyết định sàng lọc cho một hồ sơ ứng tuyển trong bối cảnh vị trí tương ứng.</div></td></tr>
+            <tr><td>Giá trị cốt lõi</td><td><div class="fill">Một kết quả sàng lọc do con người chịu trách nhiệm, có thể đưa vào bước tiếp theo và có căn cứ để truy vết khi cần. Việc ghi nhận quyết định chưa tự chứng minh quyết định đó chính xác hoặc công bằng.</div></td></tr>
+            <tr><td>Sự kiện xác nhận giá trị</td><td><div class="fill"><code>application_screening_decision_recorded</code> — sự kiện đề xuất được ghi khi hệ thống lưu thành công kết quả sàng lọc rõ ràng cho hồ sơ.</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Thẻ Core Action</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Thành phần</th><th>Câu trả lời của bạn</th></tr></thead>
+          <tbody>
+            <tr><td>Người thực hiện</td><td><div class="fill">Chuyên viên tuyển dụng chịu trách nhiệm sàng lọc ban đầu cho vị trí có số lượng hồ sơ lớn.</div></td></tr>
+            <tr><td>Công việc cốt lõi</td><td><div class="fill">Đánh giá từng hồ sơ theo tiêu chí của vị trí và đưa ra quyết định sàng lọc ban đầu nhất quán, có thể giải trình, trong thời hạn xử lý.</div></td></tr>
+            <tr><td>Hành động cốt lõi</td><td><div class="fill">Hoàn tất việc xem xét và ghi nhận quyết định sàng lọc cho một hồ sơ ứng tuyển.</div></td></tr>
+            <tr><td>Đối tượng</td><td><div class="fill">Một hồ sơ ứng tuyển gắn với một vị trí tuyển dụng cụ thể.</div></td></tr>
+            <tr><td>Điều kiện tiên quyết</td><td><div class="fill">Vị trí có bộ tiêu chí hợp lệ; hồ sơ thuộc vị trí đó; kết quả sàng lọc đã sẵn sàng; chuyên viên có quyền cập nhật trạng thái hồ sơ.</div></td></tr>
+            <tr><td>Điều kiện hoàn tất</td><td><div class="fill">Core Action hoàn tất khi hệ thống lưu thành công một kết quả sàng lọc rõ ràng. Trong giao diện hiện tại, các kết quả quan sát được gồm <code>shortlisted</code> và <code>rejected</code>. Chỉ mở hồ sơ, xem điểm AI hoặc xem phần so sánh CV–JD không được tính là hoàn tất.</div></td></tr>
+            <tr><td>Giá trị cốt lõi</td><td><div class="fill">Chuyển khuyến nghị của hệ thống thành một kết quả sàng lọc do chuyên viên chịu trách nhiệm, có thể đưa vào bước tiếp theo và truy vết khi cần.</div></td></tr>
+            <tr><td>Bằng chứng giá trị</td><td><div class="fill">Hồ sơ rời trạng thái chưa có quyết định và được lưu với một kết quả rõ ràng; hồ sơ được chọn có thể đi tiếp, còn hồ sơ không được chọn được đóng tại vòng sàng lọc ban đầu.</div></td></tr>
+            <tr><td>Sự kiện đề xuất</td><td><div class="fill"><code>application_screening_decision_recorded</code>. Đây là đề xuất cho hệ thống đo lường; chưa có bằng chứng cho thấy sản phẩm đã cài đặt sự kiện này.</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Tự kiểm 5 tiêu chí</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Tiêu chí</th><th>Kết quả</th><th>Lập luận và giới hạn</th></tr></thead>
+          <tbody>
+            <tr><td>1. Gần giá trị cốt lõi</td><td><strong>Đạt</strong></td><td>Chuyên viên đã chuyển từ xem khuyến nghị sang sở hữu một kết quả sàng lọc có thể đưa vào quy trình. Hành động này chưa chứng minh quyết định là đúng.</td></tr>
+            <tr><td>2. Có thể lặp lại</td><td><strong>Đạt</strong></td><td>Hành động lặp lại trên từng hồ sơ khi có hồ sơ mới đủ điều kiện xem xét.</td></tr>
+            <tr><td>3. Có thể quan sát</td><td><strong>Đạt</strong></td><td>Có thể xác định thời điểm hệ thống phía máy chủ lưu thành công kết quả và trạng thái hồ sơ thay đổi.</td></tr>
+            <tr><td>4. Có ý nghĩa</td><td><strong>Đạt có điều kiện</strong></td><td>Mỗi hành động hoàn tất một đơn vị công việc thật. Tuy nhiên, số lượng tuyệt đối có thể tăng chỉ vì số hồ sơ tăng; Giai đoạn 03 phải bổ sung ngưỡng chất lượng và counter-metric.</td></tr>
+            <tr><td>5. Có thể tác động</td><td><strong>Đạt</strong></td><td>Nhóm sản phẩm có thể cải thiện chất lượng căn cứ, thứ tự ưu tiên, độ tin cậy của kết quả sàng lọc và thiết kế quy trình xem xét; không nên ép chuyên viên ra quyết định nhanh hơn bất chấp chất lượng.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Phản biện lựa chọn</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Loại thông tin</th><th>Nội dung</th></tr></thead>
+          <tbody>
+            <tr><td>Thông tin từ sản phẩm đã triển khai</td><td>Cổng chuyên viên/quản trị viên cho phép cập nhật trạng thái hồ sơ và phê duyệt sang <code>shortlisted</code>; giao diện có các trạng thái <code>shortlisted</code> và <code>rejected</code>. Cổng ứng viên hiển thị kết quả tương ứng như <code>shortlisted</code> và <code>not_selected</code>.</td></tr>
+            <tr><td>Suy luận</td><td>Trạng thái được lưu sau quyết định của chuyên viên là bằng chứng gần giá trị cốt lõi hơn hành vi xem điểm AI, xem CV hoặc mở màn hình so sánh CV–JD.</td></tr>
+            <tr><td>Lựa chọn bị loại</td><td>Không chọn “AI tạo kết quả sàng lọc” vì đó là đầu ra hệ thống; không chọn “chuyên viên xem điểm AI” vì chưa có quyết định; không chọn riêng “đưa vào danh sách ngắn” vì sẽ bỏ qua các hồ sơ đã được xem xét nhưng không được chọn.</td></tr>
+            <tr><td>Giả thuyết cần kiểm chứng</td><td>Một quyết định đã ghi nhận có tương quan đủ mạnh với giá trị người dùng nhận được. Cần kiểm chứng bằng chất lượng, tính nhất quán, khả năng giải trình và kết quả ở các vòng sau; số lượng tuyệt đối là chưa đủ.</td></tr>
+            <tr><td>Rủi ro nếu chọn sai</td><td>Nhóm sản phẩm có thể tối ưu tốc độ hoặc số lượng quyết định nhưng lại làm tăng quyết định thiếu căn cứ, bỏ sót ứng viên phù hợp hoặc tạo chênh lệch giữa các nhóm.</td></tr>
+            <tr><td>Chưa đủ dữ liệu để kết luận</td><td><code>rejected</code> có đúng là “không được chọn tại vòng sàng lọc ban đầu” hay là từ chối ở giai đoạn khác; lý do quyết định có bắt buộc hay không; cách tính khi chuyên viên đảo quyết định; hệ thống phân tích sự kiện đã tồn tại hay chưa.</td></tr>
+            <tr><td>Lập luận cá nhân</td><td>Tôi chọn hành vi hoàn tất xem xét và ghi nhận quyết định vì đây là thời điểm khuyến nghị của hệ thống được chuyển thành kết quả do chuyên viên chịu trách nhiệm và có thể đi tiếp trong quy trình. Tôi không chọn việc AI tạo kết quả hoặc chuyên viên chỉ xem điểm vì các hành vi đó chưa chứng minh người dùng đã hoàn thành công việc cốt lõi; tôi cũng không chỉ tính hồ sơ được đưa vào danh sách ngắn vì như vậy sẽ bỏ qua các hồ sơ đã được đánh giá nhưng không được chọn. Đổi lại, một quyết định được lưu mới chỉ chứng minh giá trị vận hành, chưa chứng minh quyết định đó chính xác, công bằng hoặc dẫn tới kết quả tuyển dụng tốt; vì vậy không thể dùng số lượng tuyệt đối làm chỉ số duy nhất.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note"><strong>Gate 1 — Đạt 4/5, còn dữ liệu cần kiểm chứng:</strong> Core Action có người thực hiện, đối tượng và điều kiện hoàn tất rõ ràng; không phải thao tác giao diện hoặc đầu ra của AI. Tiêu chí “có ý nghĩa” chỉ đạt có điều kiện và phải được bảo vệ bằng ngưỡng chất lượng cùng counter-metric ở Giai đoạn 03.</p>
+    </section>
+
+    <section class="section" id="nature">
+      <div class="section-head">
+        <div>
+          <div class="phase-number">Giai đoạn 02</div>
+          <h2>Bản chất hành vi và nhịp tự nhiên (cadence)</h2>
+        </div>
+        <span class="time-pill">15 phút</span>
+      </div>
+      <p class="prompt">Nhu cầu thực tế khiến Core Action xuất hiện bao lâu một lần, trước khi có thông báo hoặc cơ chế khuyến khích?</p>
+
+      <h3>Thẻ bản chất hành vi (Action Nature Card)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Thành phần</th><th>Phân tích của bạn</th></tr></thead>
+          <tbody>
+            <tr><td>Người thực hiện</td><td><div class="fill">Chuyên viên được phân công và có quyền sàng lọc hồ sơ của vị trí tuyển dụng.</div></td></tr>
+            <tr><td>Mục đích</td><td><div class="fill">Hoàn tất đánh giá ban đầu để xác định hồ sơ được chuyển sang bước tiếp theo hay dừng ở vòng sàng lọc.</div></td></tr>
+            <tr><td>Tác nhân</td><td><div class="fill"><strong>Tác nhân tạo nhu cầu:</strong> một hồ sơ mới phát sinh trong vị trí chuyên viên phụ trách. <strong>Điều kiện để hành động:</strong> hồ sơ đã có đủ dữ liệu và kết quả sàng lọc để xem xét. Thông báo chỉ nhắc việc, không tạo ra nhu cầu sàng lọc.</div></td></tr>
+            <tr><td>Mức độ nỗ lực</td><td><div class="fill">Chuyên viên phải đọc hồ sơ, đối chiếu tiêu chí, kiểm tra khuyến nghị và căn cứ rồi vận dụng phán đoán trước khi ghi nhận quyết định. Chưa đủ dữ liệu để định lượng thời gian và mức độ tập trung thực tế.</div></td></tr>
+            <tr><td>Thời điểm nhận giá trị</td><td><div class="fill"><strong>Giá trị vận hành xuất hiện ngay</strong> khi quyết định được lưu và hồ sơ có thể đi tiếp hoặc được đóng. <strong>Chất lượng quyết định chỉ rõ hơn ở các vòng sau</strong>; vì vậy số quyết định một mình không chứng minh sàng lọc tốt.</div></td></tr>
+            <tr><td>Trạng thái được lưu</td><td><div class="fill"><strong>Đã quan sát được:</strong> hồ sơ được lưu với trạng thái như <code>shortlisted</code> hoặc <code>rejected</code>. <strong>Đề xuất để kiểm toán:</strong> lưu quyết định, trạng thái trước đó, người xem xét, thời điểm, lý do và phiên bản tiêu chí; chưa có bằng chứng cho thấy toàn bộ trường này đã tồn tại.</div></td></tr>
+            <tr><td>Phụ thuộc</td><td><div class="fill">Phụ thuộc số hồ sơ phát sinh, tiêu chí của vị trí, kết quả sàng lọc đã sẵn sàng, quyền truy cập và việc phân công. Không phụ thuộc một mốc lịch cố định.</div></td></tr>
+            <tr><td>Điều kiện lặp lại</td><td><div class="fill">Core Action có lý do tự nhiên để xuất hiện lại khi có hồ sơ tiếp theo đủ điều kiện xem xét trong vị trí mà chuyên viên phụ trách.</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card-grid two">
+        <article class="card">
+          <span class="label">Dạng hành vi</span>
+          <div class="fill"><strong>Phản ứng theo sự kiện (event-response).</strong> Quy trình của nhóm là bối cảnh vận hành; hồ sơ đủ điều kiện xem xét mới tạo ra lý do lặp lại tự nhiên.</div>
+        </article>
+        <article class="card">
+          <span class="label">Nhịp đo đề xuất</span>
+          <div class="fill"><strong>Theo cơ hội phát sinh (opportunity-based):</strong> đo trên từng hồ sơ đủ điều kiện; tổng hợp ở cấp <code>recruiter_id × job_opening_id</code>. Khoảng thời gian theo lịch chỉ dùng để trình bày báo cáo và chưa được chốt khi chưa biết phân bố khối lượng công việc.</div>
+        </article>
+      </div>
+
+      <h3 style="margin-top: 26px;">Kết luận về cadence</h3>
+      <div class="formula">Đối với chuyên viên phụ trách một vị trí tuyển dụng, Core Action thường xuất hiện mỗi khi có một hồ sơ đủ điều kiện xem xét, vì nhu cầu được kích hoạt bởi hồ sơ mới và trạng thái sẵn sàng của kết quả sàng lọc, không phải bởi thời gian trên lịch. Do đó, nhịp đo phù hợp là theo từng cơ hội phát sinh, tổng hợp ở cấp chuyên viên tuyển dụng × vị trí tuyển dụng.</div>
+
+      <h3>Phản biện lựa chọn</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Góc phản biện</th><th>Kết luận</th></tr></thead>
+          <tbody>
+            <tr><td>Vì sao phản ứng theo sự kiện hợp lý?</td><td>Nếu không có hồ sơ đủ điều kiện xem xét thì không có công việc sàng lọc để chuyên viên hoàn tất. Nhu cầu vì thế biến động theo số hồ sơ, không theo lịch.</td></tr>
+            <tr><td>Vì sao không chọn quy trình của nhóm?</td><td>Quy trình nhóm mô tả cách công việc được phân công và xử lý, nhưng không giải thích lý do hành vi xuất hiện lại. Hồ sơ mới đủ điều kiện mới là tác nhân tạo ra nhu cầu.</td></tr>
+            <tr><td>Vì sao không chọn ngày/tuần/tháng?</td><td>Nhịp theo lịch sẽ trộn hai trường hợp: không có nhu cầu và có nhu cầu nhưng chuyên viên không dùng sản phẩm. Nếu thiếu mẫu số là số cơ hội thực tế, tỷ lệ hoạt động theo lịch dễ dẫn đến kết luận sai.</td></tr>
+            <tr><td>Đánh đổi</td><td>Nhịp theo cơ hội bám sát tình huống sử dụng và chịu được khối lượng công việc không đều, nhưng yêu cầu định nghĩa và ghi nhận chính xác thời điểm một hồ sơ trở thành đủ điều kiện xem xét.</td></tr>
+            <tr><td>Giả thuyết cần kiểm chứng</td><td>Chuyên viên có thể gom nhiều hồ sơ thành một phiên thay vì phản ứng ngay khi từng hồ sơ xuất hiện. Đây là giả thuyết về cách thực hiện, không làm thay đổi nguồn gốc của nhu cầu; cần kiểm chứng bằng dữ liệu thời gian hoặc phỏng vấn người dùng.</td></tr>
+            <tr><td>Rủi ro nếu chọn sai</td><td>Nếu “cơ hội đủ điều kiện” được định nghĩa sai, nhóm sản phẩm có thể kết luận chuyên viên thiếu engagement dù hồ sơ chưa sẵn sàng, chưa được phân công hoặc không cần sàng lọc.</td></tr>
+            <tr><td>Câu hỏi phản biện</td><td>Hồ sơ nào được tính là đủ điều kiện? Nếu chuyên viên đảo quyết định thì cadence được tính thế nào? Khi không có hồ sơ mới, việc không quay lại có phải là rời bỏ không? Vì sao tổng hợp theo chuyên viên × vị trí thay vì chỉ theo chuyên viên?</td></tr>
+            <tr><td>Chưa đủ dữ liệu để kết luận</td><td>Phân bố hồ sơ theo thời gian; tỷ lệ hồ sơ có kết quả sàng lọc sẵn sàng; cơ chế phân công; thời điểm chuyên viên thực sự xem xét; mức độ xử lý theo lô; khoảng thời gian phù hợp để báo cáo.</td></tr>
+            <tr><td>Lập luận cá nhân</td><td>Tôi chọn nhịp theo cơ hội vì chuyên viên chỉ có lý do thực hiện Core Action khi một hồ sơ thực sự đủ điều kiện xem xét; nếu không có cơ hội này, việc không quay lại không nên bị xem là thiếu engagement hoặc rời bỏ. Cách đo này tách được trường hợp không có nhu cầu khỏi trường hợp có hồ sơ cần xử lý nhưng chuyên viên chưa hoàn tất quyết định. Đổi lại, hệ thống phải định nghĩa và ghi nhận chính xác thời điểm hồ sơ trở thành đủ điều kiện, đồng thời cần thêm dữ liệu để chọn khoảng báo cáo và xác định chuyên viên xử lý ngay hay gom thành lô.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note"><strong>Gate 2 — Đạt, còn dữ liệu cần kiểm chứng:</strong> cadence đi trực tiếp từ điều kiện lặp lại và bản chất phản ứng theo sự kiện; không ép hành vi thành thói quen hằng ngày. Cần cài đặt sự kiện ghi nhận cơ hội đủ điều kiện trước khi dùng cadence này để tính engagement hoặc retention.</p>
+    </section>
+
+    <section class="section" id="metrics">
+      <div class="section-head">
+        <div>
+          <div class="phase-number">Giai đoạn 03A</div>
+          <h2>Hệ thống chỉ số (Metric System)</h2>
+        </div>
+        <span class="time-pill">18 phút</span>
+      </div>
+      <p class="prompt">Đo Core Action bằng gì để biết người dùng đã nhận giá trị, sử dụng sâu hơn và có khả năng quay lại?</p>
+
+      <h3>Kích hoạt (activation)</h3>
+      <div class="card-grid three">
+        <article class="card"><span class="label">Sự kiện bắt đầu</span><div class="fill"><code>application_screening_opportunity_created</code> đầu tiên của chuyên viên: hồ sơ đã được phân công, còn ở vòng sàng lọc ban đầu và kết quả sàng lọc đã sẵn sàng.</div></article>
+        <article class="card"><span class="label">Sự kiện kích hoạt</span><div class="fill">Lần đầu chuyên viên tạo một <code>application_screening_decision_recorded</code> đạt bộ điều kiện chất lượng. Đây là giả thuyết về lần đầu nhận giá trị; chưa đủ dữ liệu để kết luận một lần đã dự báo retention.</div></article>
+        <article class="card"><span class="label">Khoảng thời gian</span><div class="fill">Từ <code>opportunity_created_at</code> đến <code>screening_due_at</code> được cấu hình cho quy trình. Nếu chưa có hạn xử lý hoặc SLA, chưa thể tính chỉ số kích hoạt và không được tự đặt số ngày.</div></article>
+      </div>
+
+      <div class="formula" style="margin-top: 14px;">Chỉ số kích hoạt đề xuất = Số chuyên viên có quyết định đạt chuẩn đầu tiên trước hạn ÷ Số chuyên viên nhận cơ hội sàng lọc đủ điều kiện đầu tiên</div>
+      <p class="note"><strong>Đang hoạt động không đồng nghĩa đã được kích hoạt:</strong> đăng nhập, xem CV hoặc xem điểm AI chỉ chứng minh có sử dụng. Cần phân tích theo nhóm cùng mốc bắt đầu để xác định một quyết định đạt chuẩn đã đủ chứng minh giá trị ban đầu hay cần nhiều hơn một lần (<code>N_activation &gt; 1</code>).</p>
+
+      <h3 style="margin-top: 28px;">Mức độ sử dụng (engagement) — chọn tối đa 2 góc đo</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Góc đo</th><th>Định nghĩa chỉ số</th></tr></thead>
+          <tbody>
+            <tr><td>Tần suất — được chọn</td><td><div class="fill"><strong>Tỷ lệ hoàn tất quyết định theo cơ hội</strong> = số hồ sơ đủ điều kiện có quyết định được lưu trước <code>screening_due_at</code> ÷ tổng số hồ sơ đủ điều kiện, tính theo <code>recruiter_id × job_opening_id</code>. Không dùng số lượng tuyệt đối vì khối lượng hồ sơ không đồng đều.</div></td></tr>
+            <tr><td>Chiều sâu — được chọn</td><td><div class="fill"><strong>Tỷ lệ quyết định đạt chuẩn</strong> = số quyết định đạt bộ điều kiện chất lượng ÷ tổng số quyết định đã ghi nhận. Bộ điều kiện đề xuất yêu cầu người xem xét có thẩm quyền, kết quả hợp lệ, đúng hồ sơ, đúng vị trí, đúng phiên bản tiêu chí, có đủ lý do bắt buộc và không trễ SLA.</div></td></tr>
+            <tr><td>Độ rộng — không chọn</td><td><div class="fill">Bài chỉ phân tích một tình huống sàng lọc ban đầu. Đếm thêm quy trình khác sẽ mở rộng phạm vi và không trả lời Core Action hiện tại.</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>North Star Metric</h3>
+      <div class="formula">Đơn vị giá trị + Ngưỡng chất lượng + Tần suất</div>
+      <div class="fill" style="margin-top: 14px;"><strong>NSM đề xuất — Mức độ bao phủ quyết định sàng lọc đạt chuẩn:</strong> Tỷ lệ hồ sơ đủ điều kiện nhận được quyết định do chuyên viên có thẩm quyền ghi nhận, đạt bộ điều kiện chất lượng và đúng <code>screening_due_at</code>, trong mỗi chu kỳ vị trí tuyển dụng.</div>
+
+      <div class="table-wrap" style="margin-top: 14px;">
+        <table>
+          <thead><tr><th>Thành phần NSM</th><th>Quy tắc định nghĩa chỉ số</th></tr></thead>
+          <tbody>
+            <tr><td>Đơn vị giá trị</td><td>Một hồ sơ đủ điều kiện kết thúc vòng sàng lọc ban đầu bằng quyết định do con người chịu trách nhiệm.</td></tr>
+            <tr><td>Ngưỡng chất lượng</td><td>Quyết định có kết quả hợp lệ; người thực hiện có thẩm quyền; gắn đúng hồ sơ, vị trí và phiên bản tiêu chí; lý do bắt buộc được điền đầy đủ; được lưu không muộn hơn <code>screening_due_at</code>. Mỗi hồ sơ chỉ đóng góp tối đa một đơn vị; việc đảo quyết định được theo dõi riêng.</td></tr>
+            <tr><td>Tần suất</td><td>Tính tỷ lệ bao phủ trên các cơ hội đủ điều kiện trong mỗi chu kỳ vị trí tuyển dụng. Có thể tổng hợp lên cấp chuyên viên, nhóm hoặc tổ chức nhưng không thay mẫu số bằng số người hoạt động theo lịch.</td></tr>
+            <tr><td>Công thức</td><td>Số hồ sơ đủ điều kiện có quyết định đạt chuẩn ÷ Tổng số hồ sơ đủ điều kiện.</td></tr>
+            <tr><td>Giả thuyết</td><td>Tỷ lệ bao phủ cao trong khi bộ điều kiện chất lượng được giữ vững cho thấy chuyên viên nhận được giá trị đều trên khối lượng công việc thực. Cần kiểm chứng với kết quả kiểm toán và các vòng tuyển dụng sau; chưa có dữ liệu để khẳng định quan hệ này.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="margin-top: 28px;">Chỉ số dẫn dắt (leading indicators) — tối đa 3</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Chỉ số dẫn dắt</th><th>Vì sao tin rằng nó dự báo Core Action lặp lại?</th></tr></thead>
+          <tbody>
+            <tr><td><div class="fill">Tỷ lệ vị trí có tiêu chí sẵn sàng</div></td><td><div class="fill"><strong>Giả thuyết:</strong> tiêu chí và trọng số đầy đủ, có phiên bản rõ ràng trước khi sàng lọc sẽ giúp khuyến nghị nhất quán và giảm trở ngại khi chuyên viên ra quyết định. Quan hệ này cần được kiểm chứng.</div></td></tr>
+            <tr><td><div class="fill">Tỷ lệ kết quả sàng lọc sẵn sàng</div></td><td><div class="fill"><strong>Giả thuyết:</strong> tỷ lệ hồ sơ có kết quả và căn cứ theo từng tiêu chí sẵn sàng trước hạn càng cao thì chuyên viên càng có nhiều cơ hội thực sự để hoàn tất Core Action.</div></td></tr>
+            <tr><td><div class="fill">Tỷ lệ bắt đầu xem xét trên cơ hội đủ điều kiện</div></td><td><div class="fill"><strong>Giả thuyết:</strong> chuyên viên bắt đầu xem một hồ sơ đủ điều kiện trước hạn là tín hiệu gần của việc hoàn tất quyết định; chỉ số này không thay thế sự kiện xác nhận giá trị.</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Chỉ số cảnh báo (counter-metric) — ít nhất 1</h3>
+      <div class="card-grid two">
+        <article class="card"><span class="label">Counter-metric chính</span><div class="fill"><strong>Tỷ lệ quyết định không đạt khi kiểm toán chất lượng</strong> = số quyết định trong mẫu kiểm toán không đủ căn cứ hoặc áp dụng sai tiêu chí ÷ tổng số quyết định được kiểm toán.</div></article>
+        <article class="card"><span class="label">Ngưỡng/cách đọc</span><div class="fill">Cảnh báo khi tỷ lệ không đạt xấu đi có ý nghĩa so với mốc ban đầu hoặc nhóm đối chứng sau một thay đổi sản phẩm. Chưa có mốc ban đầu và quy tắc cỡ mẫu nên không tự đặt ngưỡng số.</div></article>
+      </div>
+
+      <div class="table-wrap" style="margin-top: 14px;">
+        <table>
+          <thead><tr><th>Rào chắn bổ sung</th><th>Cách đọc</th></tr></thead>
+          <tbody>
+            <tr><td>Số quyết định sàng lọc tự động</td><td>Phải bằng <strong>0</strong>: mọi quyết định chọn hoặc không chọn phải có người có thẩm quyền xem xét. Đây là ranh giới của sản phẩm, không phải mốc tham khảo thị trường.</td></tr>
+            <tr><td>Tỷ lệ đảo quyết định</td><td>Theo dõi riêng tỷ lệ quyết định bị thay đổi và lý do. Tăng lên là tín hiệu cần điều tra, nhưng không mặc định mọi lần thay đổi đều xấu vì có thể xuất hiện thông tin mới.</td></tr>
+            <tr><td>Khoảng trống kiểm toán công bằng</td><td>Chỉ đo khi có cơ sở pháp lý, sự đồng ý và dữ liệu phù hợp; chỉ so sánh các nhóm tương đương về tiêu chí công việc. Chưa đặt ngưỡng vì chưa có mốc ban đầu hoặc chính sách được xác nhận.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Phản biện và lập luận</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Góc quyết định</th><th>Kết luận</th></tr></thead>
+          <tbody>
+            <tr><td>Lựa chọn bị loại</td><td>Không chọn số CV được AI chấm, lượt xem điểm AI, số người dùng hoạt động hằng ngày (DAU) hoặc số quyết định tuyệt đối. Các chỉ số này lần lượt đo đầu ra hệ thống, thao tác giao diện, hoạt động theo lịch và khối lượng công việc; chưa đủ chứng minh giá trị cốt lõi.</td></tr>
+            <tr><td>Đánh đổi</td><td>Tỷ lệ đã chuẩn hóa theo cơ hội phản ánh khối lượng công việc thực tốt hơn số tuyệt đối, nhưng phụ thuộc định nghĩa điều kiện sẵn sàng và thời điểm đầy đủ. Bộ điều kiện chất lượng làm việc cài đặt đo lường khó hơn nhưng giảm khả năng chỉ số bị tối ưu sai.</td></tr>
+            <tr><td>Rủi ro nếu chọn sai</td><td>Nhóm sản phẩm có thể đẩy nhanh hoặc tự động hóa quyết định để tăng tỷ lệ bao phủ trong khi căn cứ, tính công bằng hoặc trách nhiệm của con người suy giảm.</td></tr>
+            <tr><td>Câu hỏi phản biện</td><td>Ai xác nhận hồ sơ đủ điều kiện? Lý do quyết định có thể bị điền đối phó không? SLA lấy từ đâu? Vì sao kết quả phỏng vấn ở vòng sau không nằm trong NSM? Một lần đảo quyết định được tính thế nào?</td></tr>
+            <tr><td>Chưa đủ dữ liệu để kết luận</td><td>Mốc ban đầu của các chỉ số; ngưỡng kích hoạt; SLA thực tế; quy tắc và cách lấy mẫu kiểm toán; các sự kiện và thời điểm hiện có; mối liên hệ giữa tỷ lệ bao phủ quyết định đạt chuẩn với kết quả tuyển dụng ở các vòng sau.</td></tr>
+            <tr><td>Lập luận cá nhân</td><td>Tôi chọn tỷ lệ đã chuẩn hóa theo số cơ hội thay vì số quyết định tuyệt đối vì mục tiêu là hoàn tất đúng những công việc thực sự tồn tại, không phải tối đa hóa thao tác. Tôi đưa trách nhiệm của con người, tính đầy đủ của quyết định và SLA vào bộ điều kiện chất lượng để NSM không tăng bằng cách tự động ra quyết định hoặc ghi nhận kết quả thiếu căn cứ. Tôi chấp nhận NSM này đòi hỏi thêm dữ liệu về điều kiện sẵn sàng, hạn xử lý, người xem xét và phiên bản tiêu chí; nếu thiếu các trường đó, nhóm sản phẩm chưa được phép xem bảng theo dõi là bằng chứng sản phẩm tạo ra giá trị.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="retention">
+      <div class="section-head">
+        <div>
+          <div class="phase-number">Giai đoạn 03B</div>
+          <h2>Định nghĩa retention</h2>
+        </div>
+        <span class="time-pill">7 phút</span>
+      </div>
+      <p class="prompt">Đơn vị nào được tính là quay lại, quay lại làm gì, trong khoảng nào và bao nhiêu lần?</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Thành phần</th><th>Định nghĩa của bạn</th></tr></thead>
+          <tbody>
+            <tr><td>Đơn vị (unit)</td><td><div class="fill"><code>recruiter_id × job_opening_id</code>. Đơn vị này gắn chuyên viên với một vị trí cụ thể, tránh trộn các vị trí có khối lượng hồ sơ và tiêu chí khác nhau.</div></td></tr>
+            <tr><td>Mốc vào nhóm (cohort entry)</td><td><div class="fill">Đơn vị vào nhóm khi chuyên viên ghi nhận quyết định đạt chuẩn đầu tiên tại cơ hội <code>O0</code> của vị trí.</div></td></tr>
+            <tr><td>Sự kiện quay lại</td><td><div class="fill">Một <code>application_screening_decision_recorded</code> đạt chuẩn cho hồ sơ khác, trong một phiên làm việc sau <code>O0</code>; hồ sơ này phải trở thành đủ điều kiện sau thời điểm hoàn tất <code>O0</code>.</div></td></tr>
+            <tr><td>Khoảng đo</td><td><div class="fill"><strong>Theo thứ tự cơ hội:</strong> <code>O+1</code>, <code>O+2</code>, … chỉ gồm các cơ hội mới phát sinh sau <code>O0</code>. Không mặc định dùng D7 hoặc W4.</div></td></tr>
+            <tr><td>Ngưỡng</td><td><div class="fill">Ít nhất một quyết định đạt chuẩn cho hồ sơ thuộc cơ hội đang xét, được lưu trước <code>screening_due_at</code>. Mỗi hồ sơ chỉ được tính một lần.</div></td></tr>
+            <tr><td>Phân khúc</td><td><div class="fill">Chuyên viên thuộc persona đã chọn, được phân công vào vị trí có nhiều hồ sơ và có ít nhất một cơ hội mới sau <code>O0</code>. Đơn vị chưa nhận cơ hội tiếp theo được tạm loại khỏi mẫu số do chưa có khả năng quay lại, không bị xem là rời bỏ.</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Câu định nghĩa retention hoàn chỉnh</h3>
+      <div class="fill">Trong nhóm các đơn vị <code>recruiter_id × job_opening_id</code> đã ghi nhận quyết định đạt chuẩn đầu tiên tại <code>O0</code>, retention tại <code>O+n</code> là tỷ lệ đơn vị ghi nhận ít nhất một quyết định đạt chuẩn cho một hồ sơ khác, trong một phiên làm việc sau <code>O0</code> và trước <code>screening_due_at</code>; hồ sơ đó phải trở thành đủ điều kiện sau <code>O0</code>. Mẫu số chỉ gồm các đơn vị thực sự nhận được cơ hội tương ứng và thuộc persona sàng lọc vị trí có nhiều hồ sơ.</div>
+
+      <h3>Phân biệt engagement và retention</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Phương án</th><th>Đánh giá</th></tr></thead>
+          <tbody>
+            <tr><td>Nhiều quyết định trong cùng một phiên</td><td>Được xem là engagement theo tần suất. Các hồ sơ đã nằm sẵn trong hàng đợi trước <code>O0</code> không được tính là retention, dù được xử lý sau <code>O0</code>.</td></tr>
+            <tr><td>Quyết định cho cơ hội mới ở phiên sau</td><td>Được chọn làm retention của quy trình vì một nhu cầu mới đã phát sinh sau <code>O0</code> và chuyên viên có cơ hội thực sự để quay lại.</td></tr>
+            <tr><td>Quyết định ở vị trí tuyển dụng kế tiếp</td><td>Phù hợp để đo retention dài hạn ở cấp tài khoản hoặc dự án, nhưng nằm ngoài nhịp chính của tình huống hiện tại và cần thời gian lấy mẫu dài hơn. Có thể bổ sung sau.</td></tr>
+            <tr><td>Giả thuyết cần kiểm chứng</td><td>Retention theo cơ hội dự báo việc sử dụng bền vững tốt hơn retention theo lịch. Cần so sánh các nhóm cùng mốc bắt đầu và hành vi sử dụng về sau; chưa đủ dữ liệu để kết luận.</td></tr>
+            <tr><td>Lập luận cá nhân</td><td>Tôi chọn retention theo cơ hội vì người dùng chỉ có thể quay lại khi một hồ sơ khác thực sự sẵn sàng để xem xét. Tôi không tính đơn vị chưa có cơ hội tiếp theo là rời bỏ và không dùng D7 để tránh đánh giá sai do nguồn hồ sơ không đều. Đổi lại, đường retention khó so trực tiếp với mốc SaaS theo lịch, nhưng sự kiện quay lại và nhóm có nguy cơ rời bỏ được định nghĩa rõ hơn.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note"><strong>Gate 3 — Đạt về định nghĩa, còn yêu cầu cài đặt và kiểm chứng:</strong> activation có sự kiện bắt đầu, sự kiện giá trị đầu tiên và khoảng thời gian riêng; retention đủ sáu thành phần và khớp cadence theo cơ hội; NSM có đơn vị giá trị, ngưỡng chất lượng và tần suất; có counter-metric cùng rào chắn con người chịu trách nhiệm. Chưa có dữ liệu để tính chỉ số hoặc đặt mốc so sánh.</p>
+    </section>
+
+    <section class="section" id="loop">
+      <div class="section-head">
+        <div>
+          <div class="phase-number">Giai đoạn 04A</div>
+          <h2>Vòng lặp sản phẩm (Product Loop)</h2>
+        </div>
+        <span class="time-pill">8 phút</span>
+      </div>
+      <p class="prompt">Điều gì tạo ra lý do tự nhiên để người dùng quay lại và lặp lại Core Action trong chu kỳ tiếp theo?</p>
+
+      <div class="loop">
+        <div class="loop-step"><strong>1. Tác nhân tự nhiên</strong><span>Một hồ sơ được phân công cho chuyên viên và đã có đủ dữ liệu cùng kết quả sàng lọc để xem xét.</span></div>
+        <div class="loop-step"><strong>2. Core Action</strong><span>Chuyên viên xem xét căn cứ và ghi nhận quyết định sàng lọc cho hồ sơ.</span></div>
+        <div class="loop-step"><strong>3. Giá trị tức thời</strong><span>Một đơn vị công việc được hoàn tất: hồ sơ có kết quả rõ ràng để đi tiếp hoặc dừng tại vòng sàng lọc.</span></div>
+        <div class="loop-step"><strong>4. Trạng thái được lưu</strong><span>Kết quả và trạng thái hồ sơ được lưu; số hồ sơ chưa có quyết định trong vị trí giảm đi một.</span></div>
+      </div>
+      <div class="loop">
+        <div class="loop-step"><strong>5. Tác nhân tiếp theo</strong><span>Một hồ sơ tiếp theo trong vị trí trở thành đủ điều kiện để xem xét.</span></div>
+        <div class="loop-step"><strong>6. Core Action tiếp theo</strong><span>Chuyên viên tiếp tục xem xét và ghi nhận quyết định cho hồ sơ mới theo cùng bộ tiêu chí của vị trí.</span></div>
+        <div class="loop-step"><strong>7. Giá trị lặp lại</strong><span>Thêm một hồ sơ được xử lý, giúp quy trình tiến lên và lượng hồ sơ chờ sàng lọc tiếp tục giảm.</span></div>
+        <div class="loop-step"><strong>8. Vòng lặp tiếp tục</strong><span>Các hồ sơ đã xử lý có trạng thái rõ ràng; hồ sơ đủ điều kiện tiếp theo mở một chu kỳ phản ứng theo sự kiện mới.</span></div>
+      </div>
+
+      <div class="card-grid two">
+        <article class="card"><span class="label">Loại vòng lặp chính</span><div class="fill"><strong>Vòng lặp phản ứng theo sự kiện.</strong> Quy trình công việc là bối cảnh vận hành; mỗi hồ sơ đủ điều kiện xem xét là tác nhân tự nhiên mở một chu kỳ mới.</div></article>
+        <article class="card"><span class="label">Lý do quay lại khi không có thông báo</span><div class="fill">Chuyên viên vẫn phải quay lại khi có hồ sơ mới đủ điều kiện sàng lọc để hoàn thành trách nhiệm đối với vị trí tuyển dụng. Thông báo chỉ nhắc việc, không tạo ra nhu cầu này.</div></article>
+      </div>
+
+      <h3 style="margin-top: 28px;">Giả thuyết chỉ số (metric hypothesis)</h3>
+      <div class="formula">Nếu vòng lặp này vận hành đúng, <strong>Tỷ lệ hoàn tất quyết định theo cơ hội</strong> sẽ <strong>tăng so với mốc ban đầu hoặc nhóm đối chứng hợp lệ</strong> trong <strong>chu kỳ vị trí tuyển dụng tiếp theo</strong>, vì mỗi hồ sơ đủ điều kiện tạo ra một tác nhân có thể quan sát, còn quyết định được lưu đúng SLA sẽ hoàn tất một đơn vị công việc và đưa chuyên viên đến cơ hội tiếp theo.</div>
+      <p class="note"><strong>Gate 4:</strong> vòng lặp có ít nhất hai chu kỳ và giả thuyết tham chiếu đến một chỉ số đã định nghĩa ở Giai đoạn 03.</p>
+    </section>
+
+    <section class="section" id="tracking">
+      <div class="section-head">
+        <div>
+          <div class="phase-number">Giai đoạn 04B</div>
+          <h2>Danh sách sự kiện đo lường</h2>
+        </div>
+        <span class="time-pill">7 phút</span>
+      </div>
+      <p class="prompt">Cần ghi nhận 4–8 event nào để tính được các chỉ số và kiểm chứng vòng lặp sản phẩm?</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Tên event</th><th>Ý nghĩa</th><th>Thời điểm ghi nhận</th><th>Chỉ số sử dụng</th></tr></thead>
+          <tbody>
+            <tr><td><div class="fill"><code>job_opening_criteria_activated</code></div></td><td><div class="fill">Một phiên bản bộ tiêu chí của vị trí đã đủ điều kiện để dùng cho sàng lọc.</div></td><td><div class="fill">Hệ thống phía máy chủ ghi sau khi lưu thành công phiên bản có đủ tiêu chí, trọng số và trạng thái đang áp dụng.</div></td><td><div class="fill">Tỷ lệ vị trí có tiêu chí sẵn sàng.</div></td></tr>
+            <tr><td><div class="fill"><code>application_screening_result_ready</code></div></td><td><div class="fill">Kết quả sàng lọc và căn cứ theo tiêu chí của một hồ sơ đã sẵn sàng để chuyên viên xem.</div></td><td><div class="fill">Ghi sau khi hệ thống lưu thành công kết quả, căn cứ và phiên bản tiêu chí; không ghi khi quy trình AI mới bắt đầu.</div></td><td><div class="fill">Tỷ lệ kết quả sàng lọc sẵn sàng.</div></td></tr>
+            <tr><td><div class="fill"><code>application_screening_opportunity_created</code></div></td><td><div class="fill">Một hồ sơ đã đáp ứng đủ điều kiện để chuyên viên bắt đầu xem xét; đây là mẫu số cơ hội, chưa phải quyết định.</div></td><td><div class="fill">Ghi sau khi hồ sơ đã được phân công, còn ở vòng sàng lọc ban đầu, có dữ liệu hợp lệ và kết quả sàng lọc sẵn sàng.</div></td><td><div class="fill">Số cơ hội đủ điều kiện; mẫu số activation; Tỷ lệ bắt đầu xem xét; Tỷ lệ hoàn tất quyết định theo cơ hội; NSM; retention theo cơ hội.</div></td></tr>
+            <tr><td><div class="fill"><code>application_review_started</code></div></td><td><div class="fill">Chuyên viên đã thực sự bắt đầu xem một hồ sơ đủ điều kiện cùng các căn cứ sàng lọc.</div></td><td><div class="fill">Ghi một lần cho mỗi phiên bản điều kiện sẵn sàng khi chuyên viên mở hồ sơ và dữ liệu xem xét tải thành công; không ghi khi chỉ nhìn danh sách.</div></td><td><div class="fill">Tỷ lệ bắt đầu xem xét; thời gian từ khi đủ điều kiện đến khi bắt đầu; chỉ số dẫn dắt cho Core Action.</div></td></tr>
+            <tr><td><div class="fill"><code>application_screening_decision_recorded</code></div></td><td><div class="fill">Chuyên viên đã hoàn tất xem xét và hệ thống đã lưu quyết định sàng lọc ban đầu rõ ràng cho hồ sơ.</div></td><td><div class="fill">Hệ thống phía máy chủ ghi sau khi chuyển thành công từ chưa có quyết định sang kết quả hợp lệ như <code>shortlisted</code> hoặc <code>rejected</code>.</div></td><td><div class="fill">Activation; engagement; sự kiện quay lại của retention; Tỷ lệ quyết định đạt chuẩn; Tỷ lệ hoàn tất theo cơ hội; NSM.</div></td></tr>
+            <tr><td><div class="fill"><code>application_screening_decision_revised</code></div></td><td><div class="fill">Một quyết định đã lưu trước đó được chuyên viên thay đổi sang kết quả khác.</div></td><td><div class="fill">Ghi sau khi lưu thành công phiên bản quyết định mới, kèm kết quả trước và sau; không ghi cho quyết định đầu tiên.</div></td><td><div class="fill">Tỷ lệ đảo quyết định — rào chắn cảnh báo quyết định thiếu ổn định; tăng là tín hiệu cần điều tra, không mặc định mọi lần thay đổi đều xấu.</div></td></tr>
+            <tr><td><div class="fill"><code>screening_decision_quality_audited</code></div></td><td><div class="fill">Một quyết định trong mẫu kiểm toán đã được đánh giá theo quy tắc chất lượng và có kết quả đạt hoặc không đạt.</div></td><td><div class="fill">Ghi sau khi người kiểm toán có thẩm quyền lưu kết quả kiểm toán cùng phiên bản quy tắc áp dụng.</div></td><td><div class="fill">Tỷ lệ quyết định không đạt khi kiểm toán chất lượng.</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Tiêu chí nghiệm thu (acceptance criteria)</h3>
+      <div class="card-grid two">
+        <article class="card"><span class="label">Tiêu chí 01 · Hoàn tất thật</span><div class="fill">Với mỗi <code>application_id</code>, hệ thống chỉ ghi <code>application_screening_decision_recorded</code> sau khi phía máy chủ lưu thành công lần chuyển từ chưa có quyết định sang một kết quả hợp lệ. Bấm nút, yêu cầu thất bại hoặc chỉ xem điểm AI không được tạo event.</div></article>
+        <article class="card"><span class="label">Tiêu chí 02 · Không ghi trùng</span><div class="fill">Mỗi lần chuyển trạng thái chỉ tạo một event với <code>event_id</code> và <code>decision_version_id</code> duy nhất. Tải lại trang, gửi lại yêu cầu hoặc tự động lưu không được ghi thêm event; nếu kết quả thật sự thay đổi, hệ thống tạo đúng một <code>application_screening_decision_revised</code>.</div></article>
+        <article class="card"><span class="label">Tiêu chí 03 · Cơ hội hợp lệ</span><div class="fill"><code>application_screening_opportunity_created</code> chỉ được ghi khi hồ sơ đã được phân công, còn ở vòng sàng lọc ban đầu, có dữ liệu bắt buộc và kết quả sàng lọc sẵn sàng. Thiếu một điều kiện thì không tạo event.</div></article>
+        <article class="card"><span class="label">Tiêu chí 04 · Dữ liệu bắt buộc</span><div class="fill">Mọi event phải có <code>event_id</code>, <code>occurred_at</code>, <code>application_id</code> hoặc <code>job_opening_id</code> phù hợp và phiên bản liên quan. Event quyết định phải có thêm <code>reviewer_id</code>, <code>review_session_id</code>, kết quả và <code>criteria_version</code>; không đưa nội dung CV nhạy cảm vào dữ liệu phân tích.</div></article>
+      </div>
+      <p class="note"><strong>Trạng thái đo lường:</strong> bảy event trên là đề xuất để kiểm chứng vòng lặp và tính các chỉ số; chưa có bằng chứng cho thấy chúng đã được cài đặt trong sản phẩm hiện tại.</p>
+      <p class="note"><strong>Gate 5:</strong> có 7 event; mỗi event được dùng để tính ít nhất một chỉ số; có 4 tiêu chí nghiệm thu rõ ràng.</p>
+    </section>
+
+    <section class="section" id="revision">
+      <div class="section-head">
+        <div>
+          <div class="phase-number">Giai đoạn 05</div>
+          <h2>Điều chỉnh và kiểm tra cuối</h2>
+        </div>
+        <span class="time-pill">10 phút</span>
+      </div>
+      <p class="prompt">Sau khi nối toàn bộ chuỗi, lựa chọn nào cần sửa và vì sao?</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Thay đổi</th><th>Trước</th><th>Sau</th><th>Lý do</th></tr></thead>
+          <tbody>
+            <tr><td><div class="fill">Sự kiện quay lại của retention</div></td><td><div class="fill">Bất kỳ quyết định đạt chuẩn nào tại cơ hội kế tiếp đều có thể được tính, kể cả khi hồ sơ đã nằm sẵn trong hàng đợi và được xử lý trong cùng phiên.</div></td><td><div class="fill">Chỉ tính quyết định cho hồ sơ trở thành đủ điều kiện sau <code>O0</code> và được xử lý trong một phiên làm việc sau <code>O0</code>.</div></td><td><div class="fill">Cách cũ có thể nhầm engagement theo tần suất với retention. Cách mới yêu cầu có nhu cầu mới và một lần quay lại thực sự.</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Kiểm tra chuỗi quyết định</h3>
+      <ul class="checklist">
+        <li>Core Action không phải thao tác giao diện hoặc đầu ra của hệ thống.</li>
+        <li>Activation chứng minh người dùng đã nhận giá trị đầu tiên, không chỉ đăng nhập hoặc hoàn tất hướng dẫn ban đầu.</li>
+        <li>Tần suất đo không cao hơn nhu cầu thật.</li>
+        <li>Vòng lặp có lý do quay lại độc lập với thông báo.</li>
+        <li>Khoảng retention khớp cadence tự nhiên.</li>
+        <li>Mỗi event được sử dụng để tính ít nhất một chỉ số.</li>
+        <li>Các chỉ số chính, chỉ số dẫn dắt và counter-metric đều có event để tính.</li>
+      </ul>
+
+      <h3 style="margin-top: 30px;">Năm gate đánh giá</h3>
+      <div class="gate-grid">
+        <article class="gate"><strong>Gate 1</strong><p>Core Action đứng vững.</p></article>
+        <article class="gate"><strong>Gate 2</strong><p>Cadence xuất phát từ bản chất hành vi.</p></article>
+        <article class="gate"><strong>Gate 3</strong><p>Chỉ số tính được, retention đủ nghĩa.</p></article>
+        <article class="gate"><strong>Gate 4</strong><p>Vòng lặp nối đúng chỉ số.</p></article>
+        <article class="gate"><strong>Gate 5</strong><p>Event đủ để kiểm chứng.</p></article>
+      </div>
+
+      <p class="note"><strong>Nhật ký hỗ trợ của AI:</strong> người nộp tự xác nhận AI đã hỗ trợ ở đâu, đề xuất nào chưa phù hợp và mình đã tự sửa hoặc quyết định lại điều gì.</p>
+    </section>
+
+    <footer class="footer">Bộ chỉ số sản phẩm · Track 1 Ngày 23 · Tạ Thị Thu Huyền · 2A202601782</footer>
+  </main>
+</body>
+</html>
