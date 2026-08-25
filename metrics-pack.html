@@ -125,12 +125,6 @@
       font-weight: 700;
     }
 
-    .placeholder {
-      color: #87929e;
-      font-weight: 500;
-      font-style: italic;
-    }
-
     .flow {
       margin-top: 26px;
       padding: 22px 26px;
@@ -380,6 +374,7 @@
       </div>
 
       <div class="flow">Hành động cốt lõi (Core Action) → Nhịp tự nhiên (cadence) → Hệ thống chỉ số + retention<br>→ Vòng lặp sản phẩm (giả thuyết) → Sự kiện đo lường (phép thử)</div>
+      <p class="note"><strong>Cách đọc thuật ngữ:</strong> <em>Job Opening</em> là vị trí tuyển dụng; <em>Candidate Application</em> là hồ sơ ứng tuyển; các tên hiển thị theo kiểu <code>mã_kỹ_thuật</code> là trạng thái, trường dữ liệu hoặc event cần giữ nguyên.</p>
     </header>
 
     <nav class="phase-nav" aria-label="Điều hướng Bộ chỉ số sản phẩm">
@@ -396,7 +391,7 @@
     <section class="section" id="scope">
       <div class="section-head">
         <div>
-          <div class="phase-number">Giai đoạn 00</div>
+          <div class="phase-number">Mục 00</div>
           <h2>Chốt phạm vi</h2>
         </div>
         <span class="time-pill">10 phút</span>
@@ -427,8 +422,8 @@
           <thead><tr><th>Thành phần</th><th>Phạm vi Giai đoạn 00</th></tr></thead>
           <tbody>
             <tr><td>Tình huống sử dụng</td><td>Chuyên viên tuyển dụng xem xét từng hồ sơ ứng tuyển trong bối cảnh của vị trí tương ứng và đưa ra quyết định sàng lọc ban đầu.</td></tr>
-            <tr><td>Bối cảnh nghiệp vụ</td><td>Một vị trí tuyển dụng (`Job Opening`) có bộ tiêu chí và trọng số riêng.</td></tr>
-            <tr><td>Đơn vị công việc nhỏ nhất</td><td>Một hồ sơ ứng tuyển (`Candidate Application`) gắn với một vị trí cụ thể.</td></tr>
+            <tr><td>Bối cảnh nghiệp vụ</td><td>Một vị trí tuyển dụng (<code>Job Opening</code>) có bộ tiêu chí và trọng số riêng.</td></tr>
+            <tr><td>Đơn vị công việc nhỏ nhất</td><td>Một hồ sơ ứng tuyển (<code>Candidate Application</code>) gắn với một vị trí cụ thể.</td></tr>
             <tr><td>Điều kiện tiên quyết</td><td>Vị trí có bộ tiêu chí hợp lệ; hồ sơ đã được tiếp nhận; kết quả sàng lọc của hệ thống đã sẵn sàng để chuyên viên xem xét.</td></tr>
             <tr><td>Bắt đầu quy trình</td><td>Chuyên viên bắt đầu xem hồ sơ, kết quả sàng lọc và căn cứ do hệ thống cung cấp.</td></tr>
             <tr><td>Kết thúc quy trình</td><td>Chuyên viên ghi nhận hồ sơ có được đưa vào danh sách ngắn hay không.</td></tr>
@@ -461,7 +456,7 @@
     <section class="section" id="core-action">
       <div class="section-head">
         <div>
-          <div class="phase-number">Giai đoạn 01</div>
+          <div class="phase-number">Mục 01</div>
           <h2>Hành động cốt lõi (Core Action)</h2>
         </div>
         <span class="time-pill">15 phút</span>
@@ -534,7 +529,7 @@
     <section class="section" id="nature">
       <div class="section-head">
         <div>
-          <div class="phase-number">Giai đoạn 02</div>
+          <div class="phase-number">Mục 02</div>
           <h2>Bản chất hành vi và nhịp tự nhiên (cadence)</h2>
         </div>
         <span class="time-pill">15 phút</span>
@@ -595,7 +590,7 @@
     <section class="section" id="metrics">
       <div class="section-head">
         <div>
-          <div class="phase-number">Giai đoạn 03A</div>
+          <div class="phase-number">Mục 03</div>
           <h2>Hệ thống chỉ số (Metric System)</h2>
         </div>
         <span class="time-pill">18 phút</span>
@@ -655,7 +650,7 @@
 
       <h3>Chỉ số cảnh báo (counter-metric) — ít nhất 1</h3>
       <div class="card-grid two">
-        <article class="card"><span class="label">Counter-metric chính</span><div class="fill"><strong>Tỷ lệ quyết định không đạt khi kiểm toán chất lượng</strong> = số quyết định trong mẫu kiểm toán không đủ căn cứ hoặc áp dụng sai tiêu chí ÷ tổng số quyết định được kiểm toán.</div></article>
+        <article class="card"><span class="label">Chỉ số cảnh báo chính</span><div class="fill"><strong>Tỷ lệ quyết định không đạt khi kiểm toán chất lượng</strong> = số quyết định trong mẫu kiểm toán không đủ căn cứ hoặc áp dụng sai tiêu chí ÷ tổng số quyết định được kiểm toán.</div></article>
         <article class="card"><span class="label">Ngưỡng/cách đọc</span><div class="fill">Cảnh báo khi tỷ lệ không đạt xấu đi có ý nghĩa so với mốc ban đầu hoặc nhóm đối chứng sau một thay đổi sản phẩm. Chưa có mốc ban đầu và quy tắc cỡ mẫu nên không tự đặt ngưỡng số.</div></article>
       </div>
 
@@ -689,7 +684,7 @@
     <section class="section" id="retention">
       <div class="section-head">
         <div>
-          <div class="phase-number">Giai đoạn 03B</div>
+          <div class="phase-number">Mục 04</div>
           <h2>Định nghĩa retention</h2>
         </div>
         <span class="time-pill">7 phút</span>
@@ -732,7 +727,7 @@
     <section class="section" id="loop">
       <div class="section-head">
         <div>
-          <div class="phase-number">Giai đoạn 04A</div>
+          <div class="phase-number">Mục 05</div>
           <h2>Vòng lặp sản phẩm (Product Loop)</h2>
         </div>
         <span class="time-pill">8 phút</span>
@@ -765,7 +760,7 @@
     <section class="section" id="tracking">
       <div class="section-head">
         <div>
-          <div class="phase-number">Giai đoạn 04B</div>
+          <div class="phase-number">Mục 06</div>
           <h2>Danh sách sự kiện đo lường</h2>
         </div>
         <span class="time-pill">7 phút</span>
@@ -801,7 +796,7 @@
     <section class="section" id="revision">
       <div class="section-head">
         <div>
-          <div class="phase-number">Giai đoạn 05</div>
+          <div class="phase-number">Mục 07</div>
           <h2>Điều chỉnh và kiểm tra cuối</h2>
         </div>
         <span class="time-pill">10 phút</span>
