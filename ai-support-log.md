@@ -2,12 +2,12 @@
 
 ## AI đã giúp tôi ở đâu?
 
-AI giúp tôi hiểu yêu cầu, gợi mở các phương án cho Core Action, đặt câu hỏi phản biện về công việc cốt lõi và cadence, gợi ý tên event theo dạng `object_action`, đưa ra mẫu tiêu chí nghiệm thu và rà soát tính nhất quán từ Core Action đến các event đo lường. AI cũng chỉ ra nguy cơ nhầm việc xử lý nhiều hồ sơ trong cùng một phiên với retention.
+Tôi dùng AI để brainstorm các phương án Core Action, đặt câu hỏi phản biện về công việc cốt lõi và cadence, gợi ý tên event theo dạng `object_action` và tham khảo cách viết tiêu chí nghiệm thu. AI cũng giúp tôi nhận ra nguy cơ nhầm việc xử lý nhiều hồ sơ trong cùng một phiên với retention.
 
 ## AI sai, hời hợt hoặc đề xuất chỉ số không đúng bản chất hành vi ở đâu?
 
-AI ban đầu dùng thông tin cũ và mô tả iRSA như còn ở giai đoạn khám phá dù sản phẩm đã được triển khai. Một số đề xuất đi quá xa khi viết gần hoàn chỉnh kết luận về cadence, giả thuyết chỉ số và phần lập luận; tôi không xem đó là quyết định cá nhân nếu chưa tự kiểm chứng. AI cũng từng diễn đạt các trường như điều kiện sẵn sàng, SLA và mẫu kiểm toán như thể đã tồn tại, trong khi đây mới là đề xuất đo lường. Tôi không dùng mốc so sánh hoặc ngưỡng do AI tự giả định khi chưa có dữ liệu.
+AI ban đầu dùng thông tin cũ và mô tả iRSA như còn ở giai đoạn khám phá, dù sản phẩm đã được triển khai. AI cũng từng đưa ra bản nháp quá hoàn chỉnh cho kết luận cadence, giả thuyết chỉ số và phần lập luận. Tôi không dùng nguyên văn các nội dung đó mà tự đối chiếu với cách iRSA vận hành, tự chọn phương án và viết lại. Ngoài ra, AI đã diễn đạt điều kiện sẵn sàng, SLA và mẫu kiểm toán như thể chúng đã tồn tại, trong khi đây mới là yêu cầu tracking đề xuất. Tôi đã loại bỏ các kết luận và ngưỡng không có dữ liệu xác nhận.
 
 ## Tôi đã tự sửa hoặc quyết định lại điều gì?
 
-Tôi xác nhận dự án đã được triển khai, chọn chuyên viên tuyển dụng làm người dùng chính và giới hạn tình huống sử dụng ở quyết định sàng lọc trên từng hồ sơ. Tôi phân biệt hồ sơ xử lý trong cùng một phiên là engagement, còn retention chỉ được tính khi có hồ sơ mới đủ điều kiện sau mốc đầu tiên và người dùng quay lại trong phiên sau. Trước khi nộp, tôi tự chịu trách nhiệm chốt Core Action, cadence, giả thuyết chỉ số, lập luận và phần nhìn lại; tôi chỉ giữ những nội dung mình có thể giải thích và bảo vệ dựa trên bối cảnh thực tế của iRSA.
+Tôi xác nhận chuyên viên tuyển dụng là người dùng chính và giới hạn bài ở quyết định sàng lọc trên từng hồ sơ. Tôi tự chọn Core Action, kết luận cadence theo cơ hội phát sinh và viết giả thuyết chỉ số dựa trên cách iRSA vận hành. Tôi cũng tách việc xử lý nhiều hồ sơ trong cùng một phiên thành engagement; retention chỉ được tính khi có hồ sơ mới đủ điều kiện và người dùng quay lại ở phiên sau.
